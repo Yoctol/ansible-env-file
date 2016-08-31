@@ -1,5 +1,27 @@
 ---
 - hosts: localhost
-  remote_user: root
+  vars:
+    test_dest_path: /tmp/this_is_a_test_env_file
+
+  # Execute role in normal way.
   roles:
-    - env_file
+    - role: "{{ playbook_dir }}/../"
+      dest: "{{ test_dest_path }}"
+      env: { DEF: 789, ABC: 123, XYZ: 456 }
+
+  tasks:
+    - shell: cat {{ test_dest_path }}
+      notify:
+        - remove dest file
+      register: cat_file
+
+    - debug: msg={{ cat_file.stdout_lines }}
+
+    - name: it sort vars and list them line by line as 'KEY=VALUE'
+      assert:
+        that: cat_file.stdout == 'ABC=123\nDEF=789\nXYZ=456'
+
+
+  handlers:
+    - name: remove dest file
+      file: path={{ test_dest_path }}
