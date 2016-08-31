@@ -1,2 +1,10 @@
 ---
-# defaults file for env_file
+# Env object to make env file with.
+env: {}
+
+# Required, the path where dockerfile to be rendered on the host.
+dest: ~/env-file
+
+# Optional, the args of ansible template module except `src` and `dest`.
+# Check http://docs.ansible.com/ansible/template_module.html.
+template_options: {}

@@ -1,38 +1,46 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Role to render env file with ease.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ansible >= 1.2
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+# Env object to make env file with.
+env: {}
 
-Dependencies
-------------
+# Required, the path where dockerfile to be rendered on the host.
+dest: ~/env-file
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+# Optional, the args of ansible template module except `src` and `dest`.
+# Check http://docs.ansible.com/ansible/template_module.html.
+template_options: {}
+```
+
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- hosts: servers
+  roles:
+    - role: env_file
+      dest: ~/env-file
+      template_options: owner=root mode=u=rw,g=r,o=r
+```
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Yoctol Info Inc.
