@@ -5,8 +5,8 @@
     src: env-file.template
     dest: "{{ dest }}"
     owner: "{{ template_options['owner'] | default(omit) }}"
-    group: "{{ template_options['backup'] | default(omit) }}"
-    mode: "{{ template_options['backup'] | default(omit) }}"
+    group: "{{ template_options['group'] | default(omit) }}"
+    mode: "{{ template_options['mode'] | default(omit) }}"
     backup: "{{ template_options['backup'] | default(omit) }}"
     force: "{{ template_options['force'] | default(omit) }}"
     validate: "{{ template_options['validate'] | default(omit) }}"
