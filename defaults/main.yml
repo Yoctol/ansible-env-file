@@ -5,6 +5,16 @@ env: {}
 # Required, the path where dockerfile to be rendered on the host.
 dest: ~/env-file
 
-# Optional, the args of ansible template module except `src` and `dest`.
+# Optional template arguments, which are the args of template module except `src`.
+# If not set, default template settings are used.
 # Check http://docs.ansible.com/ansible/template_module.html.
-template_options: {}
+# owner:    ''
+# group:    ''
+# mode:     ''
+# backup:   ''
+# force:    ''
+# validate: ''
+# selevel:  ''
+# serole:   ''
+# setype:   ''
+# seuser:   ''
